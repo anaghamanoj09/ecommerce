@@ -1,0 +1,40 @@
+{% extends 'Head/headbase.html' %}
+{% block content %}
+<body>
+    <div class="container" style="min-height: 625px;">
+        <div style="color: burlywood;padding-top: 20px;">
+        <h4>Create Category</h4></div>
+        <form action="{% url 'add_category' %}" method="post">
+            {% csrf_token %}
+        <div class="row">
+            <div class="col-3">
+                <label for="">Category Name</label>
+            </div>
+            <div class="col-lg-6">
+                <input type="text" name="category" id="" class="form-control">
+            </div>
+        </div> 
+        <div class="row mt-4">
+            <div class=" offset-3 col-3">
+                <button class="btn-outline-dark btn-primary form-control" type="submit">Create</button>  
+            </div>
+            <div class="col-lg-3">
+                <button class="btn-outline-dark btn-primary form-control" type="submit" >Back To List</button>
+            </div>
+        </div>
+    </form>
+    </div> 
+</body>
+
+
+
+
+
+
+
+
+
+
+
+
+{% endblock %}

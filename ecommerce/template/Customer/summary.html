@@ -1,0 +1,86 @@
+{% extends 'Customer/customerbase.html' %}
+{% block content %}
+<body>
+    <div class="container">
+        <div class="card mt-4">
+            <div class="card-header">
+                <div class="row">
+                    <div class="col-md-6">
+                        <label for="">Order summary</label>
+                    </div>
+                    <div class="col-6 text-end">
+                        <a class="btn btn-outline-info" href="{% url 'view_cart' %}">Back to Cart</a>
+                    </div>
+                </div>
+            </div>
+            <form action="{% url 'place_order' %}" method="post">
+                {% csrf_token %}
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6 col-sm-12">
+                            <label style="color: blue;font-weight: bold;" for="">PickUpDetails</label><br>
+                    {% for d in da %}
+                    <input type="hidden" name="id" value="{{d.id}}">
+                       <label for="">Name</label>
+                       <input type="text" name="name" id="" value="{{d.user}}" class="form-control"><br>
+                       <label for="">Phone</label>
+                       <input type="number" name="phone" value="{{d.Phone}}" id="" class="form-control"><br>
+                       <label for="">Address</label>
+                       <textarea name="address" id="" class="form-control">{{d.Address}}</textarea>                     
+                       <label for="">City</label>
+                       <input type="text" name="city" value="{{d.City}}" id="" class="form-control">
+                       <label for="">State</label>
+                       <input type="text" name="state" value="{{d.State}}" id="" class="form-control">
+                       <label for="">Postal code</label>
+                       <input type="number" name="post" value="{{d.Postal}}" class="form-control" id="">
+                    </div>
+                    {% endfor %}
+                        <div class="col-md-6 col-sm-6 " style="padding-left: 135px;">
+                            <label style="font-weight: bold;color: blue;" for="">Order summary</label>
+                            <div class="row border h-44 w-100">
+                               
+                            {% for u in us %}
+                            <div class="col-6" style="padding-top: 20px;">
+                                <label for="" style="font-weight: bold;">{{u.productid.name}}</label><br>
+                                <label for="" name="count">Quantity:{{u.count}}</label>
+                            </div>
+                                <div class="col-6" style="padding-top: 20px;">  
+                                    <label for="" name="price" >${{u.price}}</label><br>  
+                            </div> 
+                            {% endfor %}
+            
+                                <div class="col-6" style="padding-top: 20px;">
+                                    <label for="">Total(usd):</label>
+                                </div>
+                                <div class="col-6" style="padding-top: 20px; color: crimson;font-weight: bolder;">
+                                    <label for="">${{total}}</label>
+                                </div>                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer mt-3">
+                    <div class="row">
+                    <div class="col-9">
+                        <label for="">Estimated Arrival date: {{ new_date|date:"Y-m-d" }}</label>
+                    </div>
+                    <div class="col-3" class="text-end">
+                        <button type="submit" class="btn btn-primary form-control">Place order</button>
+                    </div>
+                </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+
+
+
+
+
+
+
+
+
+
+{% endblock %}

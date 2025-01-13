@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/static/css/bootstrap.css">
+    <script type="text/javascript">
+        function validation(){
+            var alpha=/^[a-z A-Z]+$/;
+            var num=/^[0-9]{10,12}$/;
+            var name=document.getElementById("first");
+            var lname=document.getElementById("last");
+            var phone=document.getElementById("phone");
+            var address=document.getElementById("address");
+            var city=document.getElementById("city");
+            var username=document.getElementById("username");
+            var email=document.getElementById("mail");
+            var password=document.getElementById("password");
+            var repeat=document.getElementById("repeat");
+            if(name.value.length==0){
+                    alert("enter name");
+                    return false;
+                }
+            else if(!name.value.match(alpha))
+            {
+                alert("invalid name");
+                return false;
+            }
+            else if(lname.value.length==0)
+            {
+                alert("enter lastname");
+                return false;
+            }
+            else if(phone.value.length==0)
+            {
+                alert("enter number");
+                return false;
+            }
+            else if(!phone.value.match(num))
+            {
+                alert("invalid phone number");
+                return false;
+            }
+            else if(address.value.length==0)
+            {
+                alert("enter address");
+                return false;
+            }
+            else if(city.value.length==0)
+            {
+                alert("enter city");
+                return false;
+            }
+            else if(username.value.length==0)
+            {
+                alert("enter username");
+                return false;
+            }
+            else if(email.value.length==0)
+            {
+                alert("enter email");
+                return false;
+            }
+            else if(password.value.length==0)
+            {
+                alert("enter password");
+                return false;
+            }
+            else{
+                return true;
+            }
+        }
+    </script>
+</head>
+<body>
+    <form action="{% url 'register' %}" method="post">
+        {% csrf_token %}
+        <div class="header-nav">
+            <nav class="navbar navbar-expand-lg navbar-light bg-success">
+                <ul class="navbar-nav ms-auto order-5">  
+                    <li class="nav-item"><a href="{% url 'login_user' %}" class="nav-link">Login</a></li>
+                    <li class="nav-item"><a href="{% url 'register' %}" class="nav-link">Register</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="container">
+            <div style="text-align: center; padding-left: 28%;">
+            <div class="row">
+                <div class="col-md-6 col-sm-12">
+                    <h3 style="color: blue; padding-top: 15%;">Sign UP</h3>
+                    <table width="100%">
+                        <tr>
+                           <th></th>
+                            <td><input type="text" class="form-control" name="fname" id="first" placeholder="First Name"></td>
+                        </tr>
+                        <tr>
+                            <th></th>
+                            <td><input type="text" class="form-control" name="lname" id="last" placeholder="Lastname"></td>
+                        </tr>
+                        <tr>
+                            <th></th>
+                            <td><input type="text" class="form-control" name="phone" id="phone" placeholder="Phone number"></td>
+                        </tr>
+                        <tr>
+                            <th></th>
+                            <td><textarea name="address" class="form-control" id="address" placeholder="Address"></textarea></td>
+                        </tr>
+                        <tr>
+                            <th></th>
+                            <td><input type="text" class="form-control" name="city" id="city" placeholder="City"></td>
+                        </tr>
+                        <tr>
+                            <th></th>
+                            <td><input type="text" name="state" id="stste" class="form-control" placeholder="State"></td>
+                        </tr>
+                        <tr>
+                            <th></th>
+                            <td><input type="number" name="postal" id="postal" class="form-control" placeholder="Postal code"></td>
+                        </tr>
+                        <tr>
+                            <th></th>
+                            <td><input type="text" class="form-control" name="uname" id="username" placeholder="Username"></td>
+                        </tr>
+                        <tr>
+                            <th></th>
+                            <td><input type="text" class="form-control" name="email" id="mail" placeholder="Email@mymail.com"></td>
+                        </tr>
+                        <tr>
+                            <th></th>
+                            <td><input type="password" class="form-control" name="password" id="password" placeholder="Password"></td>
+                        </tr>
+                        <tr>
+                            <th></th>
+                            <td><input type="password" class="form-control" name="repeat" id="repeat" placeholder="Conform Password"></td>
+                        </tr>
+                    </table>
+                    <div>
+                    <input style="color: beige; background-color:  rgb(3, 73, 25);" type="submit" value="Register" class="form-control" onclick="return validation()">
+                </div>
+                </div>
+            </div>
+        </div>
+        </div>
+    </form>
+    <footer class="bg-success text-center fixed-bottom">
+        <h5>Copyright</h5>
+    </footer>
+</body>
+</html>
+{% if messages %}
+{% for m in messages %}
+<script>
+    alert('{{m}}')
+</script>
+{% endfor %}
+{% endif %}

@@ -1,0 +1,97 @@
+{% extends 'Customer/customerbase.html' %}
+{% block content %}
+
+<body>
+    <div class="container">
+        <div class="card mt-4">
+            <div class="card-header">
+                <div class="row">
+                    <div class="col-6">
+                        <label for="">Order summary</label>
+                    </div>
+                    <div class="col-6 text-end">
+                        <a class="btn btn-danger" href="">Back to order</a>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body">
+                        <div class="row">
+                    <div class="col-md-6 col-sm-12">
+                        <label style="color: blue;font-weight: bold;" for="">PickUpDetails:</label><br>
+                        {% for d in da %}
+                        <input type="hidden" name="id" value="{{d.id}}">
+                        <label for="">Name</label>
+                        <input type="text" name="name" value="{{d.name}}" class="form-control" id="name"><br>
+                        <label for="">Phone</label>
+                        <input type="number" name="phone" value="{{d.phone}}" class="form-control" id="phone"><br>
+                        <label for="">Address</label>
+                        <textarea name="address" class="form-control" id="address">{{d.address}}</textarea><br>
+                        <label for="">City</label>
+                        <input type="text" name="city" value="{{d.city}}" class="form-control" id="city"><br>
+                        <label for="">Zipcode</label>
+                        <input type="text" value="{{d.zipcode}}" name="zip" class="form-control" id="zip"><br>
+                        <label for="">Email</label>
+                        <input type="text" name="email" value="{{d.email}}" class="form-control" id="mail"><br>
+                        <label for="">Order date</label>
+                        <input type="text" name="date" class="form-control" value="{{d.orderdate}}" id="date"><br>
+                        <label for="">Carrier</label>
+                        <input type="text" name="carrier" class="form-control" value="{{d.carrier}}" id="carrier"><br>
+                        <label for="">Tracking</label>
+                        <input type="text" name="tracking" value="{{d.tracking}}" class="form-control" id="tracking"><br>
+                        <label for="">Shipping date</label>
+                        <input type="text" name="shipping" value="{{d.shippingdate}}" class="form-control" id=""shipping><br>
+                        <label for="">Transaction id</label>
+                        <input type="text" name="transaction" class="form-control" value="{{d.transaction_id}}" id="transaction"><br>
+                        <label for="">Payment Due date</label>
+                        <input type="text" class="form-control" value="{{d.paymentdue_date}}" name="payment" id="payment"><br>
+                        <label for="">Payment status</label>
+                        <input type="text" class="form-control" value="{{d.payment_status}}" name="status" id="status">
+                    </div>
+                    <div class="col-md-6 col-sm-6">
+                        <label style="color: blueviolet; font-weight: bold;" for="">Order Summary:</label>
+                        <div class="row border h-45 w-100">
+                            
+                            <div class="col-6">
+                                {% for u in us %}
+                                    <label for="" style="font-weight: bold;">{{u.product_id.name}}</label><br>
+                                    <label for="" name="count">Quantity:{{u.count}}</label><br>
+                                    <label for="" name="price" >${{u.price}}</label> <br>  
+                                    {% endfor %} 
+                            </div>
+                           
+                            
+                            <div class="col-6">
+                                
+                                {% for i in t %} 
+                                <div class="pt-5 text-end">
+                                <label for="">{{i}}</label><br>
+                            </div>
+                                {% endfor %}
+                            </div>
+                           
+                        </div>
+                            <div class="row">
+                                <div class="col-6">
+                                    
+                                    <label style="color: brown;font-weight: bolder;" for="">Total(usd):</label>
+                                    <label for="">${{d.order_total}}</label>
+                                
+                                </div>
+                            </div>
+                            <a class="btn btn-danger form-control" href="{% url 'cancel' d.id  %}">Cancel Order</a>
+                        </div>
+                        {% endfor %}
+                    </div>
+                    </form>
+                 
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+
+
+
+
+{% endblock %}

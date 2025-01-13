@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/static/css/bootstrap.css"> 
+    <script src="/static/js/bootstrap.bundle.js"></script>
+</head>
+<body>
+    <form action="{% url 'login_user' %}" method="post">
+        {% csrf_token %}
+        <div class="header-nav">
+            <nav class="navbar navbar-expand-lg navbar-light bg-success">
+                <ul class="navbar-nav ms-auto order-5">  
+                    <li class="nav-item"><a href="{% url 'login_user' %}" class="nav-link">Login</a></li>
+                    <li class="nav-item"><a href="{% url 'register' %}" class="nav-link">Register</a></li>
+                </ul>
+            </div>
+        </div>
+    <div class="container">
+        <div style="padding-top: 15%; padding-left: 25%;">
+        <div class="row">
+            <div class="col-md-6 col-sm-6">
+                <h3 style="text-align: center; padding-bottom: 10%; color: blue;">Login</h3>
+                <table width="100%">
+                    <tr>
+                        <th></th>
+                        <td><input type="text" class="form-control"  name="username" id="" placeholder="Username"></td>
+                    </tr>
+                    <tr>
+                        <th></th>
+                        <td><input type="password" class="form-control" name="password" id="" placeholder="password"></td>
+                    </tr>
+                </table>
+                <div style="padding-top: 5%;">
+                    <input style="color: beige; background-color: rgb(3, 73, 25);" class="form-control" type="submit" value="Login">
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    </div>
+    <div style="text-align: center; padding-right: 11%;">
+    <a href="{% url 'register' %}">Register as new user</a>
+    <a href="{% url 'forgot_password' %}">Forgot Password?</a>
+</div>
+</form>
+<footer class="bg-success text-center fixed-bottom">
+    <h5>Fit-Check @Copyright</h5>
+</footer>
+</body>
+</html>
+{% if messages %}
+{% for m in messages %}
+<script>
+    alert('{{m}}')
+</script>
+{% endfor %}
+{% endif %}

@@ -1,0 +1,51 @@
+{% extends 'Customer/customerbase.html' %}
+{% block content %}
+<body>
+    <div class="container">
+        <div style="text-align: center;">
+        <div class="row">
+          
+               <h3 style="color: chocolate;padding-top: 15%;">Change Password</h3>
+               <form action="{% url 'change_psswd' %}" method="post">
+                {% csrf_token %}
+               <table align="center" width="50%">
+                <div class="mt-3">
+                <tr>
+                    <th></th>
+                    <td><input type="password" class="form-control" name="old" id="" placeholder="Old password"></td>
+                </tr>
+                <tr>
+                    <th></th>
+                    <td><input type="password" class="form-control" name="new" placeholder="New Password" id=""></td>
+                </tr>
+                <tr>
+                    <th></th>
+                    <td><input type="password" class="form-control" placeholder="Confirm Password" name="confirm" id=""></td>
+                </tr>
+            </div>
+               </table>
+               <div>
+                <input type="submit" class="form-control" value="Reset">
+               </div>
+            </form>
+
+
+            </div>
+
+    </div>
+    </div>
+
+
+</body>
+
+    {% if messages %}
+    {% for m in messages %}
+    <script>
+        alert('{{m}}')
+    </script>
+    {% endfor %}
+    {% endif %}
+
+
+
+{% endblock %}

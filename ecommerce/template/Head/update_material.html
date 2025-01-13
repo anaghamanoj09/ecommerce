@@ -1,0 +1,36 @@
+{% extends 'Head/headbase.html' %}
+{% block content %}
+<body>    
+    <div class="container" style="min-height: 625px;">
+    <form action="{% url 'updateAction' %}" method="post">
+        {% csrf_token %}
+        {% for u in us %}
+        <div class="row">
+            <div class="col-3" style="padding-top: 25px;">
+                <input type="hidden" name="id" value="{{u.id}}">
+                <label for="">Material Name</label>
+            </div>
+                <div class="col-lg-6" style="padding-top: 20px;">
+                <input type="text" name="material" id="" class="form-control" value="{{u.material_type}}">
+                </div>
+        </div> 
+            <div class="row mt-4">
+            <div class="offset-3 col-3">
+            <button class="btn-outline-dark btn-primary form-control" type="submit">Save</button>  
+            </div>
+                <div class="col-3">
+                    <button class="btn-outline-dark btn-primary form-control" type="submit" >Back To List</button>
+                </div>
+            </div>
+            {% endfor %}
+        </form>
+    </div>
+</body>
+
+
+
+
+
+
+
+{% endblock %}

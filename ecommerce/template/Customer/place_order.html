@@ -1,0 +1,61 @@
+{% extends 'Customer/customerbase.html' %}
+{% block content %}
+<body>
+    <div class="container">
+        <div class="card mt-4">
+            <div class="card-header" style="background-color: rgb(153, 170, 233);">
+                <form action="{% url 'place_order' %}" method="post">
+                <div class="row">
+                    <div class="col-6">
+                        <label for="">Order summary</label>
+                    </div>
+                    <div class="col-6 text-end">
+                        <a class="btn btn-outline-secondary" href="">Back to orders</a>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-3 col-sm-12">
+                        <label for="">Name</label>
+                        <input type="text" name="" value="" class="form-control" id="">
+                        <label for="">Phone</label>
+                        <input type="number" name="" value="" class="form-control" id="">
+                        <label for="">Address</label>
+                        <textarea name="" id="" class="form-control"></textarea>
+                        <label for="">City</label>
+                        <input type="text" name="" value="" class="form-control" id="">
+                        <label for="">Postal code</label>
+                        <input type="number" name="" value="" id="" class="form-control">
+                        <label for="">Email</label>
+                        <input type="text" value="" class="form-control" name="" id="">
+                        <label for="">Order date</label>
+                        <input type="number" name="" class="form-control" value="" id="">
+                        <label for="">Carrier</label>
+                        <input type="text" class="form-control" name="" id="">
+                        <label for="">Tracking</label>
+                        <input type="text" name="" class="form-control" id="">
+                        <label for="">Shipping date</label>
+                        <input type="text" name="" class="form-control" id="">
+                        <label for="">Transaction id</label>
+                        <input type="text" name="" class="form-control" id="">
+                        <label for="">Payment date</label>
+                        <input type="text" name="" class="form-control" id="">
+                        <label for="">Payment status</label>
+                        <input type="text" class="form-control" name="" id="">
+                    </div>
+                </div>
+            </div>
+        </form>
+        </div>
+    </div>
+</body>
+
+
+
+
+
+
+
+
+{% endblock %}

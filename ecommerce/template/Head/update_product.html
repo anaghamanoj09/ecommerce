@@ -1,0 +1,117 @@
+{% extends 'Head/headbase.html' %}
+{% block content %}
+
+<body>
+    <div class="container" style="min-height: 625px;">
+            <div style="color: chocolate;">
+                <h3>Create Product</h3>
+            </div>
+    <form action="{% url 'updateAction_product' %}" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {% for u in us %}
+        <div class="row mt-3">
+            <div class="col-3">
+                <input type="hidden" name="id" value="{{u.id}}">
+                <label for="">Name</label>
+            </div>
+            <div class="col-lg-3">
+                <input type="text" name="name" class="form-control" id="" value="{{u.name}}">
+            </div>
+            <div class="col-lg-3 text-end" style="margin-left: 100px;" >
+                <img src="{{u.image.url}}" height="100px" width="100px">
+            </div>
+        </div>
+        <div class="row mt-3">
+            <div class="col-3">
+                <label for="">Description</label>
+            </div>
+            <div class="col-3">
+                <input type="text" name="description" class="form-control" id="" value="{{u.description}}">
+            </div>
+        </div>
+        <div class="row mt-3">
+            <div class="col-3">
+                <label for="">List Price</label>
+            </div>
+            <div class="col-lg-3">
+                <input type="text" name="lprice" class="form-control" id="" value="{{u.listprice}}">
+            </div>
+        </div>
+        <div class="row mt-3">
+            <div class="col-3">
+                <label for="">Price</label>
+            </div>
+            <div class="col-lg-3">
+                <input type="text" name="price" class="form-control" id="" value="{{u.price}}">
+            </div>
+        </div>
+        <div class="row mt-3">
+            <div class="col-3">
+                <label for="">Price 50</label>
+            </div>
+            <div class="col-lg-3">
+                <input type="text" name="price50" class="form-control" id="" value="{{u.price50}}">
+            </div>
+        </div>
+        <div class="row mt-3">
+            <div class="col-3">
+                <label for="">Price 100</label>
+            </div>
+            <div class="col-lg-3">
+                <input type="text" name="price100" class="form-control" id="" value="{{u.price100}}">
+            </div>
+        </div>
+        <div class="row mt-3">
+            <div class="col-3">
+                <label for="">Category</label>
+            </div>
+            <div class="col-lg-3">
+                <select name="category" id="category" class="form-control">
+                    <option value="{{u.category.id}}">{{u.category.c_name}}</option>
+                    {% for d in da %}
+                    <option value="{{d.id}}">{{d.c_name}}</option>
+                    {% endfor %}
+                </select>
+            </div>
+        </div>
+        <div class="row mt-3">
+            <div class="col-3">
+                <label for="">Material Type</label>
+            </div>
+            <div class="col-lg-3">
+                <select name="materialtype" id="material" class="form-control">
+                    <option  value="{{u.materialtype.id}}">{{u.materialtype.material_type}}</option>
+                    {% for i in ua %}
+                    <option value="{{i.id}}">{{i.material_type}}</option>
+                    {% endfor %}
+                </select>
+            </div>
+        </div>
+        <div class="row mt-3">
+            <div class="col-3">
+                <label for="">Image</label>
+            </div>
+            <div class="col-lg-3">
+                <input type="file" name="image" id="" class="form-control" value="Choose file">
+            </div>
+        </div>
+        <div class="row mt-3" style="padding-bottom: 5px;">
+            <div class="offset-3 col-2">
+                <button type="submit" class="btn btn-primary form-control">Update</button>
+            </div>
+            <div class="col-2">
+                <a href="{% url 'back_list' %}" class="btn btn-primary form-control">Back To List</a>
+            </div>
+        </div>
+        {% endfor %}
+    </form>
+    </div>
+</body>
+
+
+
+
+
+
+
+{% endblock %}

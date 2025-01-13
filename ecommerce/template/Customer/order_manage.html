@@ -1,0 +1,53 @@
+{% extends 'Customer/customerbase.html' %}
+{% block content %}
+<body>
+    <div class="container" style="min-height: 625px;">
+        <div class="card mt-4">
+            <div class="card-header">
+            <div class="row">
+                <div class="col-6">
+                    <label for="">Orders List</label>
+                </div>
+                <div class="col-6 text-end">
+                    <button class="detail bg-primary" data-id="process">In Process</button>
+                    <button class="detail bg-primary" data-id="all">All</button>
+                    <button class="detail  bg-primary" data-id="pending">Payment Pending</button>
+                    <button class="detail bg-primary" data-id="completed">Completed</button>
+                    <button class="detail bg-primary" data-id="cancelled">Cancelled</button>
+                </div>
+                <script>
+                    $(document).ready(function(){
+                        $('.detail').click(function(){
+                            var detailid=$(this).data('id');
+                            $.ajax({
+                                url:"{% url 'details' %}",
+                                data:{'detail':detailid},
+                                success:function(data)
+                                {
+                                    $('#customer_order').empty()
+                                    $('#customer_order').append(data)
+                                },
+                                error:function(error)
+                                {
+                                    alert("error occurred")
+                                }
+                            })
+                        })
+                    })
+                            
+                </script>
+            </div>
+        </div>
+        <table id="customer_order">
+        </table>
+    </div>
+    </div>
+        
+</body>
+
+
+
+
+
+
+{% endblock %}

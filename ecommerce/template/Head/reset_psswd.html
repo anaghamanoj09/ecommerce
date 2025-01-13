@@ -1,0 +1,45 @@
+{% extends 'Head/headbase.html' %}
+{% block content %}
+<body>
+    <div class="container">
+        <div style="text-align: center;">
+        <div class="row">
+            <h3 style="color: rgb(128, 110, 160);padding-top: 15%;">Change Password</h3>
+            <form action="{% url 'reset_psswd' %}" method="post">
+                {% csrf_token %}
+            <table align="center" width="50%">
+            <div class="mt-3">
+                <tr>
+                    <th>Old password</th>
+                    <td><input type="password" class="form-control" name="oldpsswd" id=""></td>
+                </tr>
+                <tr>
+                    <th>New password</th>
+                    <td><input type="password" class="form-control" name="newpsswd" id=""></td>
+                </tr>
+                <tr>
+                    <th>Confirm password</th>
+                    <td><input type="password" class="form-control" name="confirmpsswd" id=""></td>
+                </tr>
+            </div>
+               </table>
+               <div class="pt-3">
+                <input type="submit" value="Reset">
+               </div>
+            </form>
+        </div>
+    </div>
+    </div>
+
+</body>
+{% if messages %}
+{% for m in messages %}
+<script>
+    alert('{{m}}')
+</script>
+{% endfor %}
+{% endif %}
+
+
+
+{% endblock %}

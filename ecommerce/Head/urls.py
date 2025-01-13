@@ -1,0 +1,31 @@
+from django.urls import path,include
+from Head import views
+urlpatterns = [
+    path('home',views.home,name='home'),
+    path('head_logout',views.head_logout,name='head_logout'),
+    path('category_list',views.category_list,name='category_list'),
+    path('add_category',views.add_category,name='add_category'),
+    path('create_category',views.create_category,name='create_category'),
+    path('edit_category/<int:id>',views.edit_category,name='edit_category'),
+    path('editAction',views.editAction,name='editAction'),
+    path('delete_category/<int:id>',views.delete_category,name='delete_category'),
+    path('material_list',views.material_list,name='material_list'),
+    path('add_material',views.add_material,name='add_material'),
+    path('material_create',views.material_create,name='material_create'),
+    path('update_material/<int:id>',views.update_material,name='update_material'),
+    path('updateAction',views.updateAction,name='updateAction'),
+    path('delete_material/<int:id>',views.delete_material,name='delete_material'),
+    path('product_list',views.product_list,name='product_list'),
+    path('create_product',views.create_product,name='create_product'),
+    path('update_product/<int:id>',views.update_product,name='update_product'),
+    path('updateAction_product',views.updateAction_product,name='updateAction_product'),
+    path('back_list',views.back_list,name='back_list'),
+    path('delete_product/<int:id>',views.delete_product,name='delete_product'),
+    path('manage_order',views.manage_order,name='manage_order'),
+    path('order_details',views.order_details,name='order_details'),
+    path('pickup_details/<int:id>',views.pickup_details,name='pickup_details'),
+    path('start_processing/<int:id>',views.start_processing,name='start_processing'),
+    path('ship_order',views.ship_order,name='ship_order'),
+    path('cancel_order/<int:id>',views.cancel_order,name='cancel_order'),
+    path('reset_psswd',views.reset_psswd,name='reset_psswd')
+]

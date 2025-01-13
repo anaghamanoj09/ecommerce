@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/static/css/bootstrap.css"> 
+    <script src="/static/js/bootstrap.bundle.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-secondary">
+       
+        <a href="" class="navbar-brand" style="color: rgb(215, 92, 25);font-size:large;font-weight: bolder;">Fit Check</a>
+        <ul class="navbar-nav me-auto order-xxl-0">
+            <li class="nav-item active"><a href="{% url 'home' %}" class="nav-link">Home</a></li>
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown"  href="#">Content Management</a>
+            <ul class="dropdown-menu">
+               
+                <li><a class="dropdown-item" href="{% url 'category_list' %}">Category</a></li>         
+                <li><a class="dropdown-item" href="{% url 'material_list' %}">Material Type</a></li>
+                <li><a class="dropdown-item" href="{% url 'product_list' %}">Product</a></li>
+                <li><a class="dropdown-item" href="">Company</a></li>
+            </ul>
+        </li>
+        <li class="nav-item"><a href="{% url 'manage_order' %}" class="nav-link">Manage order</a></li>
+        <li class="nav-item"><a href="{% url 'reset_psswd' %}" class="nav-link">Reset Password</a></li>
+        </ul>
+        <ul class="navbar-nav ms-auto order-5">  
+            <li class="nav-item"><a href="" class="nav-link">
+               
+                {% if  request.user.username %}
+                Hi {{user.username}} 
+                {% endif %}<i class="fa fa-user" style="font-size:24px"></i>
+            </a></li>
+                <li class="nav-item"><a href="{% url 'head_logout' %}" class="nav-link">LogOut</a></li>
+            </ul>
+
+      </nav>
+
+       
+
+
+     {% block content %}
+
+     {% endblock %}
+
+
+
+     <footer class="bg-secondary text-white text-center py-3 fixed-bottom" >
+        <p class="mb-0">© 2024 FitCheck. All rights reserved.</p>
+    </footer>
+</body>
+</html>

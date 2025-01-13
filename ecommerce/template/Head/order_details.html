@@ -1,0 +1,45 @@
+
+        <table class="table table-bordered table-hover">
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Phone number</th>
+                <th>Email</th>
+                <th>Order status</th>
+                <th>Amount</th>
+            </tr>
+        {% if page_obj %}
+            {% for u in page_obj %}
+                <tr>
+                    <td>{{u.user_id.id}}</td>
+                    <td>{{u.user_id.first_name}}</td>
+                    <td>{{u.phone}}</td>
+                    <td>{{u.user_id.email}}</td>
+                    <td>{{u.order_status}}</td>
+                    <td>{{u.order_total}}</td>
+                    <td><a class="btn btn-outline-dark" href="{% url 'pickup_details' u.id %}">Details</a></td>
+                </tr>
+            {% endfor %}
+        </table>
+        <div class="pagination">
+            {% if page_obj.has_previous %}
+                <a class="page-link" href="?order={{ order }}&page=1">First</a>
+                <a class="page-link" href="?order={{ order }}&page={{ page_obj.previous_page_number }}">Previous</a>
+            {% endif %}
+        
+            <span class="page-link">{{ page_obj.number }}</span>
+        
+            {% if page_obj.has_next %}
+                <a class="page-link" href="?order={{ order }}&page={{ page_obj.next_page_number }}">Next</a>
+                <a class="page-link" href="?order={{ order }}&page={{ page_obj.paginator.num_pages }}">Last</a>
+            {% endif %}
+        </div>
+        
+        
+        {% else %}
+                <tr>
+                    <td colspan="6" style="text-align: center;">
+                        <label style="font-weight: bolder">No data</label>
+                    </td>
+                </tr>  
+        {% endif %}

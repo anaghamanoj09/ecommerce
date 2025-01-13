@@ -1,0 +1,36 @@
+{% extends 'Head/headbase.html' %}
+{% block content %}
+<body>
+<div class="container" style="margin-top: 50px;min-height: 625px;">
+    <div style="color: cadetblue;">
+        <h4>Create Material Type</h4></div>
+    <form action="{% url 'add_material' %}" method="post">
+        {% csrf_token %}
+        <div class="row">
+            <div class="col-3" style="padding-top: 20px;">
+                <label for="">Material Type Name</label>
+            </div>
+            <div class="col-lg-6" style="padding-top: 20px;">
+                <input type="text" name="material" id="" class="form-control" required="">
+            </div>
+    </div>
+            <div class="row mt-4">
+                <div class="offset-3 col-3">
+                    <button class="btn-outline-dark btn-primary form-control"  type="submit">Create</button> 
+                </div>
+                <div class="col-3">
+                    <button class="btn-outline-dark btn-primary form-control">Back to List</button>
+                </div>
+            </div>
+</form>
+</div>
+</body>
+
+
+
+
+
+
+
+
+{% endblock %}

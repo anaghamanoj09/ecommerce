@@ -1,0 +1,54 @@
+{% extends 'Head/headbase.html' %}
+{% block content %}
+<body>
+    <div class="container" style="min-height: 625px;">
+        <div class="card mt-4">
+            <div class="card-header">
+            <div class="row">
+                <div class="col-6">
+                    <label for="">Orders List</label>
+                </div>
+                <div class="col-6 text-end">
+                    <button class="order-details" data-id="process">In Process</button>
+                    <button class="order-details" data-id="all">All</button>
+                    <button class="order-details" data-id="pending">Payment Pending</button>
+                    <button class="order-details" data-id="completed">Completed</button>
+                    <button class="order-details" data-id="rejected">Rejected</button>
+                </div>
+                <script>
+                    $(document).ready(function(){
+                        $('.order-details').click(function(){
+                            var detailsid=$(this).data('id');
+                           
+                            $.ajax({
+                                url:"{% url 'order_details' %}",
+                                data:{'detail':detailsid},
+                                success:function(data)
+                                {
+                                    $('#details').empty()
+                                    $('#details').append(data)
+                                },
+                                error:function(error)
+                                {
+                                    alert("error occurred")
+                                }
+                            })
+                        })
+                    })
+                            
+                </script>
+            </div>
+        </div>
+        <table id="details">
+        </table>
+    </div>
+    </div>
+        
+</body>
+
+
+
+
+
+
+{% endblock%}

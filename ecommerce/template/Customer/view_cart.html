@@ -1,0 +1,58 @@
+{% extends 'Customer/customerbase.html' %}
+{% block content %}
+
+    <div class="container" style="min-height: 610px;">
+        <div class="card mt-3 mb-3">
+            <div class="card-header">
+                <div class="row">
+                    <div class="col-6">
+                        <label for="">Shopping cart</label>
+                    </div>
+                    <div class="col-6 text-end">
+                        <a class="btn btn-outline-info" href="{% url 'customer_home' %}">Continue Shopping</a>
+                    </div>
+                </div>
+            </div>
+            {% for u in us %}
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-2">
+                        <img src="{{u.productid.image.url}}" height="100px" width="100px">
+                    </div>
+                    <div class="col-3">
+                        <label style="font-weight: bold;color: #ff4000; font-size: large;" for="">{{u.productid.name}}</label><br>
+                        <label for="">{{u.productid.category.c_name}}</label>
+                    </div>
+                    <div class="col-3" style="font-weight: bold;">
+                        <label for="">${{u.price}}</label>
+                        <label for="">x{{u.count}}</label>
+                    </div>
+                    <div class="col-2">
+                        <a class="btn btn-danger" href="{% url 'less_quantity' u.id %}">-</a>
+                        <a class="btn btn-danger" href="{% url 'add_count' u.id %}">+</a>
+                    </div>
+                    <div class="col-2">
+                        <a class="btn btn-outline-danger" href="{% url 'delete_cart' u.id %}">Delete</a>
+                    </div>
+            </div>
+           </div>
+           {% endfor %}
+           <div class="row">
+            <div class="col-11 text-end" style="color: rgb(221, 132, 15);font-weight: bold;">
+                <label for="">Total (usd):${{g}}</label>
+            </div>
+           </div>
+            
+            <div class="card-footer text-end">
+                <a class="btn btn-info" href="{% url 'summary' %}">Summary</a>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+{% endblock %}

@@ -1,0 +1,60 @@
+{% extends 'Head/headbase.html' %}
+{% block content %}
+<body>
+<div class="container" style="margin-top: 20px;min-height: 625px;">
+    <div style="color: rgb(177, 226, 43);">
+        <div class="row">
+            <div class="col-3">
+                <h4>Category List</h4>
+            </div>
+            <div class="col-lg-9 text-end">
+                <a  href= "{% url 'create_category' %}" class=" btn btn-primary" type="submit"> + Create New Category</a>        
+            </div>
+        </div>
+<form action="{% url 'add_category' %}">
+    {% csrf_token %}
+    {% if page_obj %}
+    <div style="margin-top: 20px;">
+    <table class="table table-hover table-bordered">
+        <thead>
+        <tr>
+            <th>Category Name</th>
+        </tr>
+       </thead>
+        {% for u in page_obj %}
+        <tr>
+            <td>{{u.c_name}}</td>
+            <td><a class="btn btn-light border-dark" href="{% url 'edit_category' u.id %}">Edit</a></td>
+            <td><a class="btn btn-light border-dark" href="{% url 'delete_category' u.id %}">Delete</a></td>
+        </tr>
+        {% endfor %}
+    </table>
+        <div class="pagination">
+            {% if page_obj.has_previous %}
+               <a class="page-link" href="?page=1">First</a>
+              <a class="page-link" href="?page={{page_obj.previous_page_number}}">Previous</a>
+                {% endif %}
+             <span class="page-link">{{ page_obj.number }}</span>
+                {% if page_obj.has_next %}
+                <a class="page-link" href="?page={{page_obj.next_page_number}}">Next</a>
+               <a class="page-link" href="?page={{page_obj.paginator.num_pages}}">Last</a>
+                {% endif %}
+        </div>
+</div>
+{% else %}
+<h3>No Categories exist</h3>
+<button class="btn-secondary" style="margin-top: 20px;" type="submit" class="top-50px"> + Create New Category</button>
+{% endif %}
+</form>
+</div>
+</body>
+{% if messages %}
+{% for m in messages %}
+<script>
+    alert('{{m}}')
+</script>
+{% endfor %}
+{% endif %}
+
+
+{% endblock %}
